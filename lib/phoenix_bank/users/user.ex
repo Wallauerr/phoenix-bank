@@ -10,4 +10,10 @@ defmodule PhoenixBank.Users.User do
 
     timestamps()
   end
+
+  def changeset(user \\ %__MODULE__{}, params) do
+    user
+    |> cast(params, [:name, :password_hash, :email, :cep])
+    |> validate_required([:name, :password_hash, :email, :cep])
+  end
 end
