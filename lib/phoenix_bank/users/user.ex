@@ -27,7 +27,7 @@ defmodule PhoenixBank.Users.User do
   end
 
   defp add_password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    change(changeset, Argon2.add_hash(password))
+    change(changeset, Argon2.hash_pwd_salt(password))
   end
 
   defp add_password_hash(changeset), do: changeset
