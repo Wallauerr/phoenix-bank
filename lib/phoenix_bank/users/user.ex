@@ -15,5 +15,8 @@ defmodule PhoenixBank.Users.User do
     user
     |> cast(params, [:name, :password_hash, :email, :cep])
     |> validate_required([:name, :password_hash, :email, :cep])
+    |> validate_length(:name, min: 3)
+    |> validate_length(:cep, is: 8)
+    |> validate_format(:email, ~r/@/)
   end
 end
