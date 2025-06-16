@@ -4,7 +4,7 @@ defmodule PhoenixBank.Users.User do
 
   alias Ecto.Changeset
 
-  @required_params [:name, :password_hash, :email, :cep]
+  @required_params [:name, :password, :email, :cep]
 
   schema "users" do
     field :name, :string
