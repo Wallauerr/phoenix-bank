@@ -9,6 +9,8 @@ defmodule PhoenixBankWeb.Router do
     pipe_through :api
 
     get "/", WelcomeController, :index
+
+    resources "/users", UsersController
   end
 
   # Enable LiveDashboard in development
