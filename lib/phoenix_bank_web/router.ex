@@ -10,7 +10,7 @@ defmodule PhoenixBankWeb.Router do
 
     get "/", WelcomeController, :index
 
-    resources "/users", UsersController
+    resources "/users", UsersController, only: [:create, :update, :delete, :show]
   end
 
   # Enable LiveDashboard in development
