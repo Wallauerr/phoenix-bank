@@ -1,5 +1,6 @@
 defmodule PhoenixBank.Users.Create do
-  alias PhoenixBank.{Repo, Users.User}
+  alias PhoenixBank.Repo
+  alias PhoenixBank.Users.User
 
   def call(params) do
     params
