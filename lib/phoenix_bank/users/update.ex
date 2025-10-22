@@ -2,7 +2,7 @@ defmodule PhoenixBank.Users.Update do
   alias PhoenixBank.Repo
   alias PhoenixBank.Users.User
 
-  def call(%{'id' => id} = params) do
+  def call(%{"id" => id} = params) do
     case Repo.get(User, id) do
       nil -> {:error, :not_found}
       user -> update(user, params)
@@ -11,7 +11,7 @@ defmodule PhoenixBank.Users.Update do
 
   def update(user, params) do
     user
-    |> User.changeset()
-    |> Repo.update(params)
+    |> User.changeset(params)
+    |> Repo.update()
   end
 end
