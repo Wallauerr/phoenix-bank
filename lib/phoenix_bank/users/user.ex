@@ -23,9 +23,7 @@ defmodule PhoenixBank.Users.User do
     user
     |> cast(params, @required_params_create)
     |> validate_required(@required_params_create)
-    |> validate_length(:name, min: 3)
-    |> validate_length(:cep, is: 8)
-    |> validate_format(:email, ~r/@/)
+    |> do_validation()
     |> add_password_hash()
   end
 
@@ -33,10 +31,15 @@ defmodule PhoenixBank.Users.User do
     user
     |> cast(params, @required_params_create)
     |> validate_required(@required_params_update)
+    |> do_validation()
+    |> add_password_hash()
+  end
+
+  defp do_validation(changeset) do
+    changeset
     |> validate_length(:name, min: 3)
     |> validate_length(:cep, is: 8)
     |> validate_format(:email, ~r/@/)
-    |> add_password_hash()
   end
 
   defp add_password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
