@@ -4,7 +4,8 @@ defmodule PhoenixBank.Users.User do
 
   alias Ecto.Changeset
 
-  @required_params [:name, :password, :email, :cep]
+  @required_params_create [:name, :password, :email, :cep]
+  @required_params_update [:name, :email, :cep]
 
   schema "users" do
     field :name, :string
@@ -16,10 +17,22 @@ defmodule PhoenixBank.Users.User do
     timestamps()
   end
 
-  def changeset(user \\ %__MODULE__{}, params) do
+  def changeset(user \\ %__MODULE__{}, params)
+
+  def changeset(%__MODULE__{} = user, params) do
     user
-    |> cast(params, @required_params)
-    |> validate_required(@required_params)
+    |> cast(params, @required_params_create)
+    |> validate_required(@required_params_create)
+    |> validate_length(:name, min: 3)
+    |> validate_length(:cep, is: 8)
+    |> validate_format(:email, ~r/@/)
+    |> add_password_hash()
+  end
+
+  def changeset(user, params) do
+    user
+    |> cast(params, @required_params_create)
+    |> validate_required(@required_params_update)
     |> validate_length(:name, min: 3)
     |> validate_length(:cep, is: 8)
     |> validate_format(:email, ~r/@/)
