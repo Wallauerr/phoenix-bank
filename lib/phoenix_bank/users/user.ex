@@ -17,10 +17,8 @@ defmodule PhoenixBank.Users.User do
     timestamps()
   end
 
-  def changeset(user \\ %__MODULE__{}, params)
-
-  def changeset(%__MODULE__{} = user, params) do
-    user
+  def changeset(params) do
+    %__MODULE__{}
     |> cast(params, @required_params_create)
     |> validate_required(@required_params_create)
     |> do_validation()
