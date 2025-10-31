@@ -25,5 +25,25 @@ defmodule PhoenixBankWeb.UsersControllerTest do
                "message" => "User created successfully"
              } = response
     end
+
+    test "when there are invalid params", %{conn: conn} do
+      params = %{
+        name: nil,
+        cep: "1234",
+        email: "john@example.com",
+        password: "123456"
+      }
+
+      response =
+        conn
+        |> post(~p"/api/users", params)
+        |> json_response(:bad_request)
+
+      expected_response = %{
+        "errors" => %{"cep" => ["should be 8 character(s)"], "name" => ["can't be blank"]}
+      }
+
+      assert response == expected_response
+    end
   end
 end
