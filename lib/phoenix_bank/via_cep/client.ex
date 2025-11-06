@@ -17,4 +17,8 @@ defmodule PhoenixBank.ViaCep.Client do
   defp handle_response({:ok, %Tesla.Env{status: 200, body: body}}) do
     {:ok, body}
   end
+
+  defp handle_response({:ok, %Tesla.Env{status: 400}}) do
+    {:error, :bad_request}
+  end
 end
