@@ -28,10 +28,28 @@ defmodule PhoenixBank.ViaCep.ClientTest do
         "unidade": ""
       })
 
-      expected_response = "test"
+      expected_response =
+        {:ok,
+         %{
+           "bairro" => "Liberdade",
+           "cep" => "93330-370",
+           "complemento" => "",
+           "ddd" => "51",
+           "estado" => "Rio Grande do Sul",
+           "gia" => "",
+           "ibge" => "4313409",
+           "localidade" => "Novo Hamburgo",
+           "logradouro" => "Rua Corumbá",
+           "regiao" => "Sul",
+           "siafi" => "8771",
+           "uf" => "RS",
+           "unidade" => ""
+         }}
 
       Bypass.expect(bypass, fn conn ->
-        Plug.Conn.resp(conn, 200, body)
+        conn
+        |> Plug.Conn.put_resp_content_type("application/json")
+        |> Plug.Conn.resp(200, body)
       end)
 
       response =
