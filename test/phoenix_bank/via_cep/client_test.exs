@@ -12,7 +12,7 @@ defmodule PhoenixBank.ViaCep.ClientTest do
     test "succesfully return cep info", %{bypass: bypass} do
       cep = "93330370"
 
-      body = ~s{
+      body = ~s({
         "bairro": "Liberdade",
         "cep": "93330-370",
         "complemento": "",
@@ -26,7 +26,7 @@ defmodule PhoenixBank.ViaCep.ClientTest do
         "siafi": "8771",
         "uf": "RS",
         "unidade": ""
-      }
+      })
 
       expected_response = "test"
 
