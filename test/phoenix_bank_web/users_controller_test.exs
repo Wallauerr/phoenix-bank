@@ -7,10 +7,10 @@ defmodule PhoenixBankWeb.UsersControllerTest do
   describe "create/2" do
     test "creates the user", %{conn: conn} do
       params = %{
-        name: "John Doe",
-        cep: "12345678",
-        email: "john@example.com",
-        password: "123456"
+        "name" => "John Doe",
+        "cep" => "12345678",
+        "email" => "john@example.com",
+        "password" => "123456"
       }
 
       response =
