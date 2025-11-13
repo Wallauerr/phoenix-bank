@@ -46,7 +46,7 @@ defmodule PhoenixBank.ViaCep.ClientTest do
            "unidade" => ""
          }}
 
-      Bypass.expect(bypass, fn conn ->
+      Bypass.expect(bypass, "GET", "/93330370/json", fn conn ->
         conn
         |> Plug.Conn.put_resp_content_type("application/json")
         |> Plug.Conn.resp(200, body)
@@ -61,5 +61,5 @@ defmodule PhoenixBank.ViaCep.ClientTest do
     end
   end
 
-  defp endpoint_url(port), do: "http://localhost:#{port}/"
+  defp endpoint_url(port), do: "http://localhost:#{port}"
 end
