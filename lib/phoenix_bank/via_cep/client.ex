@@ -1,9 +1,14 @@
 defmodule PhoenixBank.ViaCep.Client do
   use Tesla
 
+  alias PhoenixBank.ViaCep.ClientBehaviour
+
   @default_url "https://viacep.com.br/ws/"
   plug Tesla.Middleware.JSON
 
+  @behaviour ClientBehaviour
+
+  @impl ClientBehaviour
   def call(url \\ @default_url, cep) do
     "#{url}/#{cep}/json"
     |> get()
