@@ -17,6 +17,8 @@ defmodule PhoenixBankWeb.UsersControllerTest do
         "password" => "123456"
       }
 
+      expect(PhoenixBank.ViaCep.ClientMock, name, code)
+
       response =
         conn
         |> post(~p"/api/users", params)
