@@ -1,8 +1,12 @@
 defmodule PhoenixBankWeb.UsersControllerTest do
   use PhoenixBankWeb.ConnCase
 
+  import Mox
+
   alias PhoenixBank.Users
   alias Users.User
+
+  setup :verify_on_exit!
 
   describe "create/2" do
     test "creates the user", %{conn: conn} do
