@@ -17,7 +17,25 @@ defmodule PhoenixBankWeb.UsersControllerTest do
         "password" => "123456"
       }
 
-      expect(PhoenixBank.ViaCep.ClientMock, name, code)
+      body = %{
+        "bairro" => "Liberdade",
+        "cep" => "93330-370",
+        "complemento" => "",
+        "ddd" => "51",
+        "estado" => "Rio Grande do Sul",
+        "gia" => "",
+        "ibge" => "4313409",
+        "localidade" => "Novo Hamburgo",
+        "logradouro" => "Rua Corumbá",
+        "regiao" => "Sul",
+        "siafi" => "8771",
+        "uf" => "RS",
+        "unidade" => ""
+      }
+
+      expect(PhoenixBank.ViaCep.ClientMock, :call, fn "12345678" ->
+        {:ok, body}
+      end)
 
       response =
         conn
