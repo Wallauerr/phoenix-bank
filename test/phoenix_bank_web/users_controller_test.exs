@@ -81,11 +81,31 @@ defmodule PhoenixBankWeb.UsersControllerTest do
   describe "delete/2" do
     test "deletes the user", %{conn: conn} do
       params = %{
-        name: "John Doe",
-        cep: "12345678",
-        email: "john@example.com",
-        password: "123456"
+        "name" => "John Doe",
+        "cep" => "12345678",
+        "email" => "john@example.com",
+        "password" => "123456"
       }
+
+      body = %{
+        "bairro" => "Liberdade",
+        "cep" => "93330-370",
+        "complemento" => "",
+        "ddd" => "51",
+        "estado" => "Rio Grande do Sul",
+        "gia" => "",
+        "ibge" => "4313409",
+        "localidade" => "Novo Hamburgo",
+        "logradouro" => "Rua Corumbá",
+        "regiao" => "Sul",
+        "siafi" => "8771",
+        "uf" => "RS",
+        "unidade" => ""
+      }
+
+      expect(PhoenixBank.ViaCep.ClientMock, :call, fn "12345678" ->
+        {:ok, body}
+      end)
 
       {:ok, %User{id: id}} = Users.create(params)
 
