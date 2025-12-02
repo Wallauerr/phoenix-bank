@@ -12,7 +12,7 @@ defmodule PhoenixBankWeb.UsersControllerTest do
     test "creates the user", %{conn: conn} do
       params = %{
         "name" => "John Doe",
-        "cep" => "12345678",
+        "cep" => "93330370",
         "email" => "john@example.com",
         "password" => "123456"
       }
@@ -82,7 +82,7 @@ defmodule PhoenixBankWeb.UsersControllerTest do
     test "deletes the user", %{conn: conn} do
       params = %{
         "name" => "John Doe",
-        "cep" => "12345678",
+        "cep" => "93330370",
         "email" => "john@example.com",
         "password" => "123456"
       }
@@ -103,7 +103,7 @@ defmodule PhoenixBankWeb.UsersControllerTest do
         "unidade" => ""
       }
 
-      expect(PhoenixBank.ViaCep.ClientMock, :call, fn "12345678" ->
+      expect(PhoenixBank.ViaCep.ClientMock, :call, fn "93330370" ->
         {:ok, body}
       end)
 
@@ -118,7 +118,7 @@ defmodule PhoenixBankWeb.UsersControllerTest do
         "data" => %{
           "id" => id,
           "name" => "John Doe",
-          "cep" => "12345678",
+          "cep" => "93330370",
           "email" => "john@example.com"
         }
       }
