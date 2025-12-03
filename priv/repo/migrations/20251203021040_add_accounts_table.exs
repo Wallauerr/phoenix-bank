@@ -8,7 +8,7 @@ defmodule PhoenixBank.Repo.Migrations.AddAccountsTable do
 
       timestamps()
     end
-  end
 
-  create constraint("accounts", "balance_must_be_positive", check: "balance >= 0")
+    create constraint("accounts", "balance_must_be_positive", check: "balance >= 0")
+  end
 end
