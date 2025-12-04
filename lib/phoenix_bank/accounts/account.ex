@@ -17,6 +17,6 @@ defmodule PhoenixBank.Accounts.Account do
     account
     |> cast(params, @required_params)
     |> validate_acceptance(@required_params)
-    |> check_constraint(:balance, :balance_must_be_positive)
+    |> check_constraint(:balance, name: :balance_must_be_positive)
   end
 end
