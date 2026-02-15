@@ -18,5 +18,6 @@ defmodule PhoenixBank.Accounts.Account do
     |> cast(params, @required_params)
     |> validate_acceptance(@required_params)
     |> check_constraint(:balance, name: :balance_must_be_positive)
+    |> unique_constraint(:user_id, name: :accounts_user_id_unique)
   end
 end
