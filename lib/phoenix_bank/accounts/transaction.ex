@@ -3,7 +3,9 @@ defmodule PhoenixBank.Accounts.Transaction do
 
   alias PhoenixBank.Accounts.Account
   alias PhoenixBank.Repo
+  alias Accounts.Account
 
-  def call() do
+  def call(from_account_id, to_account_id, value) do
+    with {}
   end
 end
