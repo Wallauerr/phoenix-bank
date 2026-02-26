@@ -1,5 +1,6 @@
 defmodule PhoenixBank.Accounts.Transaction do
   import Ecto.Multi
+  import Decimal
 
   alias PhoenixBank.Accounts.Account
   alias PhoenixBank.Repo
